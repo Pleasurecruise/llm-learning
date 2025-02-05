@@ -1,1 +1,5 @@
 /root/autodl-tmp/llm-learning/model
+__pycache__/
+.ipynb_checkpoints/
+.idea
+.env
