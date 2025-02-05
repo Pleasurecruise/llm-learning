@@ -1,4 +1,3 @@
-import torch
-from modelscope import snapshot_download, AutoModel, AutoTokenizer
-from modelscope import GenerationConfig
-model_dir = snapshot_download('deepseek-ai/deepseek-llm-7b-chat', cache_dir='/root/autodl-tmp/llm-learning/model', revision='master')
+from modelscope import snapshot_download
+
+model_dir = snapshot_download('deepseek-ai/DeepSeek-R1-Distill-Qwen-7B', cache_dir='/root/autodl-tmp/llm-learning/model', revision='master')
