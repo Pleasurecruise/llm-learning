@@ -5,17 +5,18 @@ import json
 import datetime
 import torch
 
-# 设置设备参数
-DEVICE = "cuda"  # 使用CUDA
-DEVICE_ID = "0"  # CUDA设备ID，如果未设置则为空
-CUDA_DEVICE = f"{DEVICE}:{DEVICE_ID}" if DEVICE_ID else DEVICE  # 组合CUDA设备信息
+DEVICE = "cpu"
+# # 设置设备参数
+# DEVICE = "cuda"  # 使用CUDA
+# DEVICE_ID = "0"  # CUDA设备ID，如果未设置则为空
+# CUDA_DEVICE = f"{DEVICE}:{DEVICE_ID}" if DEVICE_ID else DEVICE  # 组合CUDA设备信息
 
-# 清理GPU内存函数
-def torch_gc():
-    if torch.cuda.is_available():  # 检查是否可用CUDA
-        with torch.cuda.device(CUDA_DEVICE):  # 指定CUDA设备
-            torch.cuda.empty_cache()  # 清空CUDA缓存
-            torch.cuda.ipc_collect()  # 收集CUDA内存碎片
+# # 清理GPU内存函数
+# def torch_gc():
+#     if torch.cuda.is_available():  # 检查是否可用CUDA
+#         with torch.cuda.device(CUDA_DEVICE):  # 指定CUDA设备
+#             torch.cuda.empty_cache()  # 清空CUDA缓存
+#             torch.cuda.ipc_collect()  # 收集CUDA内存碎片
 
 # 创建FastAPI应用
 app = FastAPI()
@@ -51,12 +52,13 @@ async def create_item(request: Request):
     # 构建日志信息
     log = "[" + time + "] " + '", prompt:"' + prompt + '", response:"' + repr(result) + '"'
     print(log)  # 打印日志
-    torch_gc()  # 执行GPU内存清理
+    # torch_gc()  # 执行GPU内存清理
     return answer  # 返回响应
 
 # 主函数入口
 if __name__ == '__main__':
-    mode_name_or_path = '/root/autodl-tmp/llm-learning/model/deepseek-ai/deepseek-llm-7b-chat'
+    # mode_name_or_path = '/root/autodl-tmp/llm-learning/model/deepseek-ai/deepseek-llm-7b-chat'
+    mode_name_or_path = 'F:/modelscope/deepseek-ai/deepseek-llm-7b-chat'
     # 加载预训练的分词器和模型
     tokenizer = AutoTokenizer.from_pretrained(mode_name_or_path, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(mode_name_or_path, trust_remote_code=True,torch_dtype=torch.bfloat16,  device_map="auto")

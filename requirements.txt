@@ -1,0 +1,11 @@
+torch~=2.6.0
+transformers~=4.48.3
+sentencepiece
+tqdm
+datasets~=3.2.0
+modelscope~=1.22.3
+uvicorn~=0.34.0
+fastapi~=0.115.8
+requests~=2.32.3
+streamlit~=1.42.0
+accelerate>=0.26.0

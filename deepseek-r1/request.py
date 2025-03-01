@@ -8,4 +8,4 @@ def get_completion(prompt):
     return response.json()['response']
 
 if __name__ == '__main__':
-    print(get_completion('请简要说明，把大象放进冰箱分为几步？'))
+    print(get_completion('你是什么模型？'))
